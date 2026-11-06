@@ -2,41 +2,90 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+
 .para,
 .small-para {
   color: hsl(0, 0%, 0%);
   font-weight: 800;
 }
 
-.small-para {
+
+/* the below works because you are changing it from a normal class selector into a chained selector, giving it more specificity */ 
+
+p.small-para {
   font-size: 14px;
-  font-weight: 800;
 }
+
+/* now font-size which is an inherited property wont be override small-para's font because it the cascade can read the rules clearer */
+
 
 .para {
-  font-size: 22px;
+  font-size: 24px;
 }
 
-.confirm {
-  background: green;
-  color: white;
+/* the other method is to change the order of selectors, so that there is no conflicting descendency rules
+
+like so: 
+
+.para {
+font-size: 24px;
+
+}
+
+.small-para {
+font-size: 14px;
+}
+
+
+*/
+
+
+.button, .confirm {
+  font-size: 24px;
   font-weight: bold;
-} 
+}
+
 
 .button {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
-  font-size: 20px;
+}
+
+.confirm {
+  background-color: green;
+  color: white;
+} 
+
+
+
+/* solution is to either change confirm into an ID selector OR move the .confirm class to after the button class so the background declarations dont conflict */
+
+
+.text {
+font-size: 24px;
+font-weight: 300;
+
 }
 
 .child {
-  color: rgb(0, 0, 0);
-  font-weight: 800;
-  font-size: 14px;
+font-size: 15px;
+font-weight: bold;
+
 }
 
-div.text {
-  color: rgb(0, 0, 0);
-  font-size: 22px;
-  font-weight: 100;
+
+
+/* another solution would be 
+
+.text .child {
+
+font-size: 14px;
+font-weight: 800;
+color: black;
 }
+
+
+div.child {
+
+
+*/
